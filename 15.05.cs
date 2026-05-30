@@ -9,11 +9,11 @@ namespace nagaev
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("-ГЛАВНОЕ МЕНЮ ПРАКТИЧЕСКИХ ЗАДАНИЙ-");
-                Console.WriteLine("1 - Задание 1 (Заполнение матрицы по спирали)");
-                Console.WriteLine("2 - Задание 2 (Умножение матрицы на число)");
-                Console.WriteLine("3 - Задание 3 (Сложение двух матриц)");
-                Console.WriteLine("4 - Задание 4 (Произведение двух матриц)");
+                Console.WriteLine("ГЛАВНОЕ МЕНЮ ДОМАШНЕГО ЗАДАНИЯ");
+                Console.WriteLine("1 - Задание 1 (Метод рисования квадрата из символов)");
+                Console.WriteLine("2 - Задание 2 (Метод проверки числа на палиндром)");
+                Console.WriteLine("3 - Задание 3 (Метод фильтрации оригинального массива)");
+                Console.WriteLine("4 - Задание 4 (Работа с классом \"Веб-сайт\")");
                 Console.WriteLine("0 - Выход");
                 Console.WriteLine("___");
                 Console.Write("Выберите номер задания: ");
@@ -47,172 +47,215 @@ namespace nagaev
                     Console.WriteLine("Неверный ввод! Пожалуйста, выберите пункт от 0 до 4.");
                 }
 
-                Console.WriteLine("\nНажмите Enter, чтобы вернуться в меню...");
+                Console.WriteLine("\nНажмите Enter, чтобы вернуться в меню.");
                 Console.ReadLine();
             }
         }
 
-        // Задание 1: Заполнение квадратной матрицы по спирали
-        static void Task1()
+        // ЗАДАНИЕ 1: Метод, отображающий квадрат из заданного символа
+        static void DrawSquare(int size, char symbol)
         {
-            Console.WriteLine("Задание 1 (Спиральная матрица)");
-            Console.Write("Введите размер квадратной матрицы (например, 4): ");
-            int n = Convert.ToInt32(Console.ReadLine());
-
-            int[,] matrix = new int[n, n];
-
-            int value = 1;       
-            int top = 0;         
-            int bottom = n - 1;  
-            int left = 0;        
-            int right = n - 1;   
-
-            // Пошаговый классический алгоритм движения по спирали
-            while (value <= n * n)
+            for (int i = 0; i < size; i++)
             {
-                for (int i = left; i <= right; i++)
+                for (int j = 0; j < size; j++)
                 {
-                    matrix[top, i] = value++;
-                }
-                top++; // Сдвигаем верхнюю границу вниз
-
-                for (int i = top; i <= bottom; i++)
-                {
-                    matrix[i, right] = value++;
-                }
-                right--; 
-
-                if (top <= bottom)
-                {
-                    for (int i = right; i >= left; i--)
-                    {
-                        matrix[bottom, i] = value++;
-                    }
-                    bottom--; 
-                }
-
-                // Движение снизу - вверх по левому столбцу
-                if (left <= right)
-                {
-                    for (int i = bottom; i >= top; i--)
-                    {
-                        matrix[i, left] = value++;
-                    }
-                    left++; // Сдвигаем левую границу вправо
-                }
-            }
-
-            Console.WriteLine("\nРезультат заполнения по спирали:");
-            PrintMatrix(matrix);
-        }
-
-        // Задание 2: Умножение двумерного массива (матрицы) на число
-        static void Task2()
-        {
-            Console.WriteLine("Задание 2 (Умножение матрицы на число)"); 
-            int[,] matrix = { { 1, 2, 3 }, { 4, 5, 6 } };
-
-            Console.WriteLine("Исходная матрица:");
-            PrintMatrix(matrix);
-
-            Console.Write("Введите число (множитель): ");
-            int multiplier = Convert.ToInt32(Console.ReadLine());
-
-            // Умножаем каждый элемент на число по отдельности
-            for (int i = 0; i < matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    matrix[i, j] = matrix[i, j] * multiplier;
-                }
-            }
-
-            Console.WriteLine("\nМатрица после умножения:");
-            PrintMatrix(matrix);
-        }
-
-        // Задание 3: Сложение двух матриц одинакового размера
-        static void Task3()
-        {
-            Console.WriteLine("Задание 3 (Сложение двух матриц)");
-            int[,] matrixA = { { 10, 20 }, { 30, 40 } };
-            int[,] matrixB = { { 1, 2 }, { 3, 4 } };
-
-            Console.WriteLine("Матрица A:");
-            PrintMatrix(matrixA);
-            Console.WriteLine("Матрица B:");
-            PrintMatrix(matrixB);
-
-            int rows = matrixA.GetLength(0);
-            int cols = matrixA.GetLength(1);
-            int[,] resultMatrix = new int[rows, cols];
-
-            // Сложение соответствующих элементов матриц
-            for (int i = 0; i < rows; i++)
-            {
-                for (int j = 0; j < cols; j++)
-                {
-                    resultMatrix[i, j] = matrixA[i, j] + matrixB[i, j];
-                }
-            }
-
-            Console.WriteLine("Результат сложения (A + B):");
-            PrintMatrix(resultMatrix);
-        }
-
-        // Задание 4: Произведение (умножение) двух матриц
-        static void Task4()
-        {
-            Console.WriteLine("Задание 4 (Произведение двух матриц)");
-
-            // Матрица A размера 2x3
-            int[,] matrixA = { { 1, 2, 3 },
-                               { 4, 5, 6 } };
-
-            // Матрица B размера 3x2 
-            int[,] matrixB = { { 7, 8 },
-                               { 9, 1 },
-                               { 2, 3 } };
-
-            Console.WriteLine("Матрица A (2x3):");
-            PrintMatrix(matrixA);
-            Console.WriteLine("Матрица B (3x2):");
-            PrintMatrix(matrixB);
-
-            int rowsA = matrixA.GetLength(0);
-            int colsA = matrixA.GetLength(1);
-            int colsB = matrixB.GetLength(1);
-
-            int[,] resultMatrix = new int[rowsA, colsB];
-
-            for (int i = 0; i < rowsA; i++)
-            {
-                for (int j = 0; j < colsB; j++)
-                {
-                    resultMatrix[i, j] = 0;
-                    for (int k = 0; k < colsA; k++)
-                    {
-                        resultMatrix[i, j] += matrixA[i, k] * matrixB[k, j];
-                    }
-                }
-            }
-
-            Console.WriteLine("Результат матричного произведения (A * B):");
-            PrintMatrix(resultMatrix);
-        }
-
-        // Вспомогательный метод для построчного вывода матриц на экран с табуляцией
-        static void PrintMatrix(int[,] matrix)
-        {
-            for (int i = 0; i < matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    Console.Write(matrix[i, j] + "\t");
+                    Console.Write(symbol + " ");
                 }
                 Console.WriteLine();
             }
+        }
+
+        static void Task1()
+        {
+            Console.WriteLine("Задание 1 (Квадрат из символов)");
+            Console.Write("Введите длину стороны квадрата: ");
+            int size = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Введите символ для рисования: ");
+            char symbol = Convert.ToChar(Console.ReadLine());
+
+            Console.WriteLine("\nРезультат работы метода:");
+            DrawSquare(size, symbol);
+        }
+
+        // ЗАДАНИЕ 2: Метод проверки числа на палиндром
+        static bool IsPalindrome(int number)
+        {
+            int original = number;
+            int reversed = 0;
+            int temp = number;
+
+            //задом наперед
+            while (temp > 0)
+            {
+                int remainder = temp % 10;
+                reversed = (reversed * 10) + remainder;
+                temp /= 10;
+            }
+
+            //палиндром
+            if (original == reversed)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        static void Task2()
+        {
+            Console.WriteLine("Задание 2 (Число-палиндром)");
+            Console.Write("Введите целое положительное число: ");
+            int num = Convert.ToInt32(Console.ReadLine());
+
+            bool result = IsPalindrome(num);
+            Console.WriteLine("Результат метода: " + result);
+
+            if (result == true)
+            {
+                Console.WriteLine($"Число {num} является палиндромом.");
+            }
+            else
+            {
+                Console.WriteLine($"Число {num} НЕ является палиндромом.");
+            }
+        }
+
+        // ЗАДАНИЕ 3: Метод фильтрации оригинального массива
+        static int[] FilterArray(int[] originalArray, int[] filterArray)
+        {
+            int targetSize = 0;
+            for (int i = 0; i < originalArray.Length; i++)
+            {
+                bool foundInFilter = false;
+                for (int j = 0; j < filterArray.Length; j++)
+                {
+                    if (originalArray[i] == filterArray[j])
+                    {
+                        foundInFilter = true;
+                        break;
+                    }
+                }
+
+                //увеличиваем счетчик размера
+                if (foundInFilter == false)
+                {
+                    targetSize++;
+                }
+            }
+
+            //результирующий массив точного размера
+            int[] result = new int[targetSize];
+            int index = 0;
+
+            for (int i = 0; i < originalArray.Length; i++)
+            {
+                bool foundInFilter = false;
+                for (int j = 0; j < filterArray.Length; j++)
+                {
+                    if (originalArray[i] == filterArray[j])
+                    {
+                        foundInFilter = true;
+                        break;
+                    }
+                }
+
+                if (foundInFilter == false)
+                {
+                    result[index] = originalArray[i];
+                    index++;
+                }
+            }
+
+            return result;
+        }
+
+        static void Task3()
+        {
+            Console.WriteLine("Задание 3 (Фильтрация массива)");
+
+            //массивы на основе примера из задания
+            int[] original = { 1, 2, 6, -1, 88, 7, 6 };
+            int[] filter = { 6, 88, 7 };
+
+            Console.Write("Оригинальный массив:     ");
+            for (int i = 0; i < original.Length; i++) Console.Write(original[i] + " ");
+            Console.WriteLine();
+
+            Console.Write("Массив для фильтрации:   ");
+            for (int i = 0; i < filter.Length; i++) Console.Write(filter[i] + " ");
+            Console.WriteLine();
+
+            int[] filteredResult = FilterArray(original, filter);
+
+            Console.Write("Результат работы метода: ");
+            for (int i = 0; i < filteredResult.Length; i++) Console.Write(filteredResult[i] + " ");
             Console.WriteLine();
         }
+
+        //ЗАДАНИЕ 4: Класс «Веб-сайт» и методы работы с ним
+        static void Task4()
+        {
+            Console.WriteLine("--- Задание 4 (Класс \"Веб-сайт\") ---");
+
+            Website site = new Website();
+
+            site.InputData();
+
+            Console.WriteLine("\nОтображение данных сайта:");
+            site.PrintData();
+
+            Console.WriteLine("Изменим IP-адрес сайта вручную через метод класса...");
+            site.SetIpAddress("192.168.1.1");
+            Console.WriteLine("Новый IP-адрес, полученный через метод Get: " + site.GetIpAddress());
+        }
+    }
+
+    //описание класса «Веб-сайт» для Задания 4
+    class Website
+    {
+        //(инкапсуляция)
+        private string siteName;
+        private string sitePath;
+        private string description;
+        private string ipAddress;
+
+        //метод для ручного ввода данных с клавиатуры
+        public void InputData()
+        {
+            Console.Write("Введите название сайта: ");
+            siteName = Console.ReadLine();
+
+            Console.Write("Введите путь к сайту (URL): ");
+            sitePath = Console.ReadLine();
+
+            Console.Write("Введите описание сайта: ");
+            description = Console.ReadLine();
+
+            Console.Write("Введите IP-адрес сайта: ");
+            ipAddress = Console.ReadLine();
+        }
+
+        public void PrintData()
+        {
+            Console.WriteLine("Название сайта: " + siteName);
+            Console.WriteLine("Путь к сайту: " + sitePath);
+            Console.WriteLine("Описание сайта: " + description);
+            Console.WriteLine("IP-адрес сайта: " + ipAddress);
+        }
+
+        public string GetSiteName() { return siteName; }
+        public void SetSiteName(string value) { siteName = value; }
+
+        public string GetSitePath() { return sitePath; }
+        public void SetSitePath(string value) { sitePath = value; }
+
+        public string GetDescription() { return description; }
+        public void SetDescription(string value) { description = value; }
+
+        public string GetIpAddress() { return ipAddress; }
+        public void SetIpAddress(string value) { ipAddress = value; }
     }
 }
