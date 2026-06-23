@@ -1,0 +1,89 @@
+﻿<Window x:Class="TextEditor.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Настройки редактора" Height="300" Width="400"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="НАСТРОЙКИ РЕДАКТОРА" 
+                   FontSize="16" FontWeight="Bold"
+                   HorizontalAlignment="Center" Margin="0,0,0,15"/>
+
+        <!-- Цвет шрифта -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" 
+                    Margin="0,5">
+            <TextBlock Text="Цвет шрифта:" Width="100" 
+                       VerticalAlignment="Center"/>
+            <ComboBox x:Name="FontColorCombo" Width="200">
+                <ComboBoxItem Content="Чёрный" Tag="Black"/>
+                <ComboBoxItem Content="Белый" Tag="White"/>
+                <ComboBoxItem Content="Красный" Tag="Red"/>
+                <ComboBoxItem Content="Синий" Tag="Blue"/>
+                <ComboBoxItem Content="Зелёный" Tag="Green"/>
+                <ComboBoxItem Content="Серый" Tag="Gray"/>
+            </ComboBox>
+        </StackPanel>
+
+        <!-- Цвет фона -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" 
+                    Margin="0,5">
+            <TextBlock Text="Цвет фона:" Width="100" 
+                       VerticalAlignment="Center"/>
+            <ComboBox x:Name="BackgroundColorCombo" Width="200">
+                <ComboBoxItem Content="Белый" Tag="White"/>
+                <ComboBoxItem Content="Чёрный" Tag="Black"/>
+                <ComboBoxItem Content="Светло-серый" Tag="LightGray"/>
+                <ComboBoxItem Content="Кремовый" Tag="Ivory"/>
+                <ComboBoxItem Content="Тёмно-синий" Tag="DarkBlue"/>
+            </ComboBox>
+        </StackPanel>
+
+        <!-- Шрифт -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" 
+                    Margin="0,5">
+            <TextBlock Text="Шрифт:" Width="100" 
+                       VerticalAlignment="Center"/>
+            <ComboBox x:Name="FontFamilyCombo" Width="200">
+                <ComboBoxItem Content="Consolas"/>
+                <ComboBoxItem Content="Times New Roman"/>
+                <ComboBoxItem Content="Arial"/>
+                <ComboBoxItem Content="Courier New"/>
+                <ComboBoxItem Content="Segoe UI"/>
+            </ComboBox>
+        </StackPanel>
+
+        <!-- Размер шрифта -->
+        <StackPanel Grid.Row="4" Orientation="Horizontal" 
+                    Margin="0,5" VerticalAlignment="Top">
+            <TextBlock Text="Размер:" Width="100" 
+                       VerticalAlignment="Center"/>
+            <ComboBox x:Name="FontSizeCombo" Width="100">
+                <ComboBoxItem Content="10"/>
+                <ComboBoxItem Content="12"/>
+                <ComboBoxItem Content="14"/>
+                <ComboBoxItem Content="16"/>
+                <ComboBoxItem Content="18"/>
+                <ComboBoxItem Content="20"/>
+                <ComboBoxItem Content="24"/>
+            </ComboBox>
+        </StackPanel>
+
+        <!-- Кнопки -->
+        <StackPanel Grid.Row="5" Orientation="Horizontal" 
+                    HorizontalAlignment="Right" Margin="0,10,0,0">
+            <Button Content="Применить" Click="Apply_Click" 
+                    Width="100" Height="30" Margin="0,0,10,0"/>
+            <Button Content="Отмена" Click="Cancel_Click" 
+                    Width="80" Height="30"/>
+        </StackPanel>
+    </Grid>
+</Window>
